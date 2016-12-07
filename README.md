@@ -7,7 +7,6 @@ Library to support rest resource for Angular 2
 
 import { Injectable }  from '@angular/core';
 import { Observable }  from 'rxjs/Rx';
-
 import { Resource }    from 'angular2-rest-resource';
 
 @Injectable()
