@@ -21,7 +21,7 @@ export class HeroResource extends Resource {
         //  or alternatively:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
         //  all unreferenced parameters will be appended as a query string
 
-        //  signature:  this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
+        //  request signature:  this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
         //  possible operations:  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
         //  data argument is used by 'POST', 'PUT', and 'PATCH' operations; other operations ignore it's value
     }
