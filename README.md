@@ -32,7 +32,7 @@ export class HeroResource extends Resource {
 }
 ```
 
-## Adding the resource service your application
+## Adding the resource service to your application
 ```
 // app.module.ts
 
