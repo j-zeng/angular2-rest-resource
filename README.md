@@ -12,19 +12,18 @@ import { Resource }    from 'angular2-rest-resource';
 
 @Injectable()
 export class HeroResource extends Resource {
-
     //  create, get, update, and delete functions are automatically available after setting url
     url = 'https://your.domain.here/hero';
 
     // (optional) defining a custom endpoint function
     getByName(name: string): Observable<any> {
         return this.request('GET', 'https://your.domain.here/hero?name=:name', { name: name });
-        //  or simply as:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
+        //  or alternatively:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
         //  all unreferenced parameters will be appended as a query string
 
         //  signature:  this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
-        //  valid operation values:  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
-        //  the data argument is used by 'POST', 'PUT', and 'PATCH' operations; other operations will ignore this argument's value
+        //  possible operations:  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
+        //  data argument is used by 'POST', 'PUT', and 'PATCH' operations; other operations ignore it's value
     }
 
     //  (optional) defining a custom endpoint function to override the default create, get, update, or delete function
@@ -65,7 +64,7 @@ export class ExampleComponent {
             powers: 'Extreme Speed'
         };
 
-        //  create, get, update, and delete functions are automatically available (simply set the url property on the resource service.)
+        //  create, get, update, and delete functions are automatically available
         this.heroResource.create(hero).subscribe((hero_) => {
             hero.id = hero_.id;
         });
@@ -74,12 +73,13 @@ export class ExampleComponent {
             hero = hero_;
         });
 
+        //  using the custom endpoint function we defined earlier
         this.heroResource.getByName('Super Guy').subscribe((hero_) => {
             hero = hero_;
         });
 
         //  default update function assumes the PUT operation.
-        //  if this doesn't suit your use case, you may define a custom endpoint function (see above hero-resource.service.ts)
+        //  you may define a custom endpoint function to change it's behavior (see above hero-resource.service.ts)
         hero.name = 'Wonder Guy';
         this.heroResource.update(hero.id, hero).subscribe((hero_) => {
             hero = hero_;
