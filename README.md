@@ -12,25 +12,22 @@ import { Resource }    from 'angular2-rest-resource';
 
 @Injectable()
 export class HeroResource extends Resource {
+
+    //  create, get, update, and delete functions are automatically available after setting url
     url = 'https://your.domain.here/hero';
 
     // (optional) defining a custom endpoint function
     getByName(name: string): Observable<any> {
         return this.request('GET', 'https://your.domain.here/hero?name=:name', { name: name });
-        // or simply as:
-        // return this.request('GET', 'https://your.domain.here/hero', { name: name });
-        // all unreferenced parameters will be appended as a query string
+        //  or simply as:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
+        //  all unreferenced parameters will be appended as a query string
 
-        // other available operations: 
-        // 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
-        //
-        // full method signature:
-        // this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
-        //
-        // data arguement is used in 'POST', 'PUT', and 'PATCH' operations; other operations will ignore it's value.
+        //  signature:  this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
+        //  valid operation values:  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
+        //  the data argument is used by 'POST', 'PUT', and 'PATCH' operations; other operations will ignore this argument's value
     }
 
-    // (optional) defining a custom endpoint function to override the create, get, update, or delete function
+    //  (optional) defining a custom endpoint function to override the default create, get, update, or delete function
     update(id: string, data: any): Observable<any> {
        return this.request('PATCH', 'https://your.domain.here/hero/:id', {id: id}, data);
     }
@@ -40,14 +37,17 @@ export class HeroResource extends Resource {
 ## Adding the resource service to the application
 ```
 // app.module.ts
+
+import { NgModule }            from '@angular/core';
 import { RestResourceModule }  from 'angular2-rest-resource';
 import { HeroResource }        from './hero-resource.service';
 
 @NgModule({
-    imports: [ RestResourceModule, YourOtherModules... ],
+    imports: [ RestResourceModule, ... your other modules ],
+    ... your other meta data
     providers: [ HeroResource ]
 })
-export class appModule { }
+export class AppModule { }
 ```
 
 ## Using the resource service in a component
