@@ -1,0 +1,29 @@
+{
+  "name": "angular2-rest-resource",
+  "version": "1.0.0",
+  "description": "Library to support rest resource for Angular 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-zeng/angular2-rest-resource.git"
+  },
+  "keywords": [
+    "Angular",
+    "Angular2",
+    "ng2",
+    "rest",
+    "restful",
+    "resource",
+    "api",
+    "HTTP"
+  ],
+  "author": "jzeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-zeng/angular2-rest-resource/issues"
+  },
+  "homepage": "https://github.com/j-zeng/angular2-rest-resource"
+}
