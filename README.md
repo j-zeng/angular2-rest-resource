@@ -33,7 +33,7 @@ export class HeroResource extends Resource {
 }
 ```
 
-## Adding the resource service to the application
+## Adding the resource service your application
 ```
 // app.module.ts
 
@@ -73,13 +73,13 @@ export class ExampleComponent {
             hero = hero_;
         });
 
-        //  using the custom endpoint function we defined earlier
+        //  example using the custom endpoint function we defined earlier
         this.heroResource.getByName('Super Guy').subscribe((hero_) => {
             hero = hero_;
         });
 
-        //  default update function assumes the PUT operation.
-        //  you may define a custom endpoint function to change it's behavior (see above hero-resource.service.ts)
+        //  default update function uses the PUT operation.
+        //  you may change it's behavior through a custom endpoint function (see above hero-resource.service.ts)
         hero.name = 'Wonder Guy';
         this.heroResource.update(hero.id, hero).subscribe((hero_) => {
             hero = hero_;
