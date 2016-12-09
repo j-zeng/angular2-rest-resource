@@ -51,12 +51,17 @@ export class AppModule { }
 ## Using the resource service in a component
 ```
 // example.component.ts
+
+import { Component }     from '@angular/core';
 import { HeroResource }  from './hero-resource.service';
 
+@Component({
+    // your component meta data here...
+})
 export class ExampleComponent {
     constructor(public heroResource: HeroResource) { }
 
-    onInit() {
+    ngOnInit() {
         let hero: any = { 
             id: null,
             name: 'Super Guy',
