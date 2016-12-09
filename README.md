@@ -1,5 +1,5 @@
 # angular2-rest-resource
-Library to support rest resource for Angular 2
+Library to support REST resource for Angular 2
 
 ## Setting up the resource service
 ```
