@@ -22,13 +22,13 @@ var Resource = (function () {
         return this.request('POST', this.url, null, data);
     };
     Resource.prototype.get = function (id) {
-        return this.request('GET', this.addSlash(this.url) + "/:id", { id: id });
+        return this.request('GET', this.addSlash(this.url) + ":id", { id: id });
     };
     Resource.prototype.update = function (id, data) {
-        return this.request('PUT', this.addSlash(this.url) + "/:id", { id: id }, data);
+        return this.request('PUT', this.addSlash(this.url) + ":id", { id: id }, data);
     };
     Resource.prototype.delete = function (id) {
-        return this.request('DELETE', this.addSlash(this.url) + "/:id", { id: id });
+        return this.request('DELETE', this.addSlash(this.url) + ":id", { id: id });
     };
     Resource.prototype.request = function (method, url, parameters, data, headers, responseHandler, errorHandler) {
         var body = JSON.stringify(data);
@@ -78,7 +78,7 @@ var Resource = (function () {
         });
     };
     Resource.prototype.addSlash = function (url) {
-        return url && url.indexOf('/') === url.length - 1 ? url + "/" : url;
+        return url && url.indexOf('/', url.length - 1) === -1 ? url + "/" : url;
     };
     Resource = __decorate([
         core_1.Injectable(), 

@@ -20,15 +20,15 @@ export class Resource {
     }
 
     get(id: string): Observable<any> {
-       return this.request('GET', `${this.addSlash(this.url)}/:id`, {id});
+       return this.request('GET', `${this.addSlash(this.url)}:id`, {id});
     }
 
     update(id: string, data: any): Observable<any> {
-       return this.request('PUT', `${this.addSlash(this.url)}/:id`, {id}, data);
+       return this.request('PUT', `${this.addSlash(this.url)}:id`, {id}, data);
     }
 
     delete(id: string): Observable<any> {
-       return this.request('DELETE', `${this.addSlash(this.url)}/:id`, {id});
+       return this.request('DELETE', `${this.addSlash(this.url)}:id`, {id});
     }
 
     protected request(method: string,
@@ -84,6 +84,6 @@ export class Resource {
     }
 
     protected addSlash(url: string): string {
-        return url && url.indexOf('/') === url.length - 1 ? `${url}/` : url;
+        return url && url.indexOf('/', url.length - 1) === -1 ? `${url}/` : url;
     }
 }
