@@ -18,11 +18,7 @@ export class HeroResource extends Resource {
     getByName(name: string): Observable<any> {
         return this.request('GET', 'https://your.domain.here/hero?name=:name', { name: name });
         //  or alternatively:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
-        //  all unreferenced parameters will be appended as a query string
-
-        //  request signature:  this.request(operation, url, [params], [data], [headers], [successHandler], [errorHandler]);
-        //  possible operations:  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
-        //  data argument is used by 'POST', 'PUT', and 'PATCH' operations; other operations ignore it's value
+        //  unreferenced parameters are appended as a query string
     }
 
     //  (optional) defining a custom endpoint function to override the default create, get, update, or delete function
@@ -31,6 +27,10 @@ export class HeroResource extends Resource {
     }
 }
 ```
+
+**Method\:** `request(operation, url, [params], [data], [headers], [successHandler], [errorHandler])`  
+- `operation: string` Valid values are 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'
+- `data: object` Passed in the body of request\. Used by 'POST', 'PUT', and 'PATCH' operations\. Other operations ignore this parameter value\.
 
 ## Adding the resource service to your application
 ```
