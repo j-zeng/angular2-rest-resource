@@ -17,7 +17,7 @@ export class HeroResource extends Resource {
     // (optional) defining a custom endpoint function
     getByName(name: string): Observable<any> {
         return this.request('GET', 'https://your.domain.here/hero?name=:name', { name: name });
-        //  or alternatively:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
+        //  alternative syntax:  return this.request('GET', 'https://your.domain.here/hero', { name: name });
         //  unreferenced parameters are appended as a query string
     }
 
