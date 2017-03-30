@@ -34,40 +34,41 @@ var Resource = (function () {
         var body = JSON.stringify(data);
         var headers_ = new http_1.Headers(headers);
         var options = new http_1.RequestOptions({ headers: headers_ });
+        var request_ = { method: method, url: url, parameters: parameters, data: data, headers: headers };
         if (method === 'POST') {
-            return this.addHandlers(this.httpService.post(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.post(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         if (method === 'PUT') {
-            return this.addHandlers(this.httpService.put(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.put(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         if (method === 'PATCH') {
-            return this.addHandlers(this.httpService.patch(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.patch(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         if (method === 'DELETE') {
-            return this.addHandlers(this.httpService.delete(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.delete(url, parameters, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         if (method === 'HEAD') {
-            return this.addHandlers(this.httpService.head(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.head(url, parameters, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         if (method === 'OPTIONS') {
-            return this.addHandlers(this.httpService.options(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.options(url, parameters, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
         else {
-            return this.addHandlers(this.httpService.get(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.get(url, parameters, options), responseHandler, errorHandler, request_)
                 .map(function (response) { return response.text() ? response.json() : response.text(); });
         }
     };
-    Resource.prototype.addHandlers = function (observable, responseHandler, errorHandler) {
+    Resource.prototype.addHandlers = function (observable, responseHandler, errorHandler, request) {
         return observable.catch(function (error, source) {
             var error_ = error.text() ? error.json() : error.text();
             if (errorHandler) {
-                errorHandler(error_, error);
+                errorHandler(error_, error, request);
             }
             return Rx_1.Observable.throw(error_);
         }).map(function (response) {

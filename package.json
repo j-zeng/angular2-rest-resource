@@ -1,6 +1,6 @@
 {
   "name": "angular2-rest-resource",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Library to support REST resource for Angular 2",
   "main": "index.js",
   "scripts": {
@@ -25,5 +25,20 @@
   "bugs": {
     "url": "https://github.com/j-zeng/angular2-rest-resource/issues"
   },
-  "homepage": "https://github.com/j-zeng/angular2-rest-resource"
+  "homepage": "https://github.com/j-zeng/angular2-rest-resource",
+  "devDependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/http": "^2.0.0",
+    "rxjs": "^5.0.0-rc.4"
+  },
+  "peerDependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/http": "^2.0.0",
+    "rxjs": "^5.0.0-rc.4"
+  },
+  "dependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/http": "^2.0.0",
+    "rxjs": "^5.0.0-rc.4"
+  }
 }

@@ -37,41 +37,44 @@ export class Resource {
                       data?: any,
                       headers?: any,
                       responseHandler?: (response: any) => void,
-                      errorHandler?: (error: any, response?: any) => void): Observable<any> {
+                      errorHandler?: (error: any, response?: any, request?: any) => void): Observable<any> {
         let body = JSON.stringify(data);
         let headers_ = new Headers(headers);
         let options = new RequestOptions({ headers: headers_ });
+
+        let request_ = { method, url, parameters, data, headers };
         if(method === 'POST') {
-            return this.addHandlers(this.httpService.post(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.post(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } if(method === 'PUT') {
-            return this.addHandlers(this.httpService.put(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.put(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } if(method === 'PATCH') {
-            return this.addHandlers(this.httpService.patch(url, parameters, body, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.patch(url, parameters, body, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } if(method === 'DELETE') {
-            return this.addHandlers(this.httpService.delete(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.delete(url, parameters, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } if(method === 'HEAD') {
-            return this.addHandlers(this.httpService.head(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.head(url, parameters, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } if(method === 'OPTIONS') {
-            return this.addHandlers(this.httpService.options(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.options(url, parameters, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         } else { // method === 'GET'
-            return this.addHandlers(this.httpService.get(url, parameters, options), responseHandler, errorHandler)
+            return this.addHandlers(this.httpService.get(url, parameters, options), responseHandler, errorHandler, request_)
                 .map((response: Response) => response.text() ? response.json() : response.text() );
         }
     }
 
     protected addHandlers(observable: Observable<Response>,
                      responseHandler?: (response: any) => void,
-                     errorHandler?: (error: any, response?: any) => void): Observable<Response> {
+                     errorHandler?: (error: any, response?: any, request?: any) => void,
+                     request?: any): Observable<Response> {
         return observable.catch((error, source) => {
             let error_ = error.text() ? error.json() : error.text();
             if(errorHandler) {
-                errorHandler(error_, error);
+                errorHandler(error_, error, request);
                 // return Observable.empty();
             }
             return Observable.throw(error_);
